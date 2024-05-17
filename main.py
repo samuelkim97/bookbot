@@ -34,13 +34,20 @@ def convert_to_list_of_dic(dic):
         new_list.append({key: dic[key]})
     return new_list
 
+def sort_by_value(dic):
+    return list(dic.values())[0]
+
+######################################################TODO#################################
+def only_alphabet(list):
+    pass
 
 def main():
     # open text file
     with open("./books/frankenstein.txt") as file:
         file_contents = file.read()
 
-    # count items in list
+    # COUNT ITEM IN LIST
+
     # create single char list
     f_word_list = []
     f_word_list = file_contents.split()
@@ -48,18 +55,26 @@ def main():
     num_of_items = count_items(f_word_list)
     print(num_of_items)
 
+
+
+    # COUNT CHAR IN TEXT FILE
+
     # make lowercase
     lower_txt(file_contents)
 
     # make dictionary
     char_dic = make_dic(lower_txt(file_contents))
-    print(char_dic)
 
-    # testing
-    convert_to_list_of_dic(char_dic)
+    # convert dic to list of dic
+    converted_list = convert_to_list_of_dic(char_dic)
+    print(converted_list)
 
+    # get rid of non alphabet
+    ## TODO
 
-
+    # sort dic
+    converted_list.sort(reverse=True, key=sort_by_value)
+#    print(converted_list)
 
 
 main()
