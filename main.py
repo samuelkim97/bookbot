@@ -1,3 +1,5 @@
+import os
+
 char_dic= {}
 
 # return txt which is all lower case
@@ -37,13 +39,25 @@ def convert_to_list_of_dic(dic):
 def sort_by_value(dic):
     return list(dic.values())[0]
 
-######################################################TODO#################################
-def only_alphabet(list):
-    pass
+def only_alphabet(given_list):
+    new_list = []
+    for dict in given_list:
+        if list(dict)[0].isalpha():
+            new_list.append(dict)
+    return new_list
+
+def print_message(num, path, given_list):
+    print(f"--- Begin report of {path} ---")
+    print(f"{num} words found in the document\n")
+    # print loop
+    for dictionary in given_list:
+        print(f"The '{list(dictionary.keys())[0]}' character was found {list(dictionary.values())[0]} times")
+    print("--- End report ---")
 
 def main():
+    path = "./books/frankenstein.txt"
     # open text file
-    with open("./books/frankenstein.txt") as file:
+    with open(path) as file:
         file_contents = file.read()
 
     # COUNT ITEM IN LIST
@@ -53,7 +67,6 @@ def main():
     f_word_list = file_contents.split()
     # count items
     num_of_items = count_items(f_word_list)
-    print(num_of_items)
 
 
 
@@ -67,14 +80,15 @@ def main():
 
     # convert dic to list of dic
     converted_list = convert_to_list_of_dic(char_dic)
-    print(converted_list)
 
     # get rid of non alphabet
-    ## TODO
+    converted_list = only_alphabet(converted_list)
 
     # sort dic
     converted_list.sort(reverse=True, key=sort_by_value)
-#    print(converted_list)
+    print(converted_list)
 
+    # print out to console
+    print_message(num_of_items, path, converted_list)
 
 main()
